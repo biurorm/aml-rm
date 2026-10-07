@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Blokada: strona nie może niczego wysłać poza własny adres, nie ładuje obcych skryptów -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#094d47">
+  <title>AML, RM Nieruchomości</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <div class="header-left">
+      <img src="logo.png" alt="RM Nieruchomości" class="header-logo">
+      <div class="subtitle">AML</div>
+    </div>
+    <div class="header-right">
+      <span class="wersja" data-wersja=""></span>
+      <button class="icon-btn" id="zablokuj-btn" aria-label="Zablokuj" hidden>🔒</button>
+    </div>
+  </header>
+
+  <div class="aktualizacja" id="aktualizacja" hidden>
+    <span>Jest nowa wersja aplikacji.</span>
+    <button class="btn-primary" id="aktualizacja-btn">Odśwież</button>
+  </div>
+
+  <!-- BLOKADA -->
+  <section class="screen" id="ekran-blokada">
+    <div class="card blokada">
+      <div class="blokada-ikona">🔐</div>
+      <div class="card-title" id="blk-tytul">AML RM</div>
+      <p class="hint" id="blk-opis"></p>
+      <label for="blk-haslo">Hasło</label>
+      <input type="password" id="blk-haslo" autocomplete="current-password">
+      <div id="blk-powtorz-box" hidden>
+        <label for="blk-haslo2">Powtórz hasło</label>
+        <input type="password" id="blk-haslo2" autocomplete="new-password">
+      </div>
+      <p class="blad" id="blk-blad" hidden></p>
+      <button class="btn-primary wide" id="blk-ok">Otwórz</button>
+      <button class="link-btn" id="blk-import">Przywróć z pliku kopii</button>
+      <input type="file" id="blk-plik" accept=".amlrm,application/json" hidden>
+    </div>
+  </section>
+
+  <!-- WIDOK GŁÓWNY (rysowany przez app.js) -->
+  <main class="screen" id="ekran-app">
+    <div id="widok"></div>
+  </main>
+
+  <nav class="dol" id="nawigacja" hidden>
+    <button data-nav="pulpit">🏠<span>Pulpit</span></button>
+    <button data-nav="klienci">👥<span>Klienci</span></button>
+    <button data-nav="rejestry">🔎<span>Rejestry</span></button>
+    <button data-nav="ustawienia">⚙️<span>Ustawienia</span></button>
+  </nav>
+</div>
+
+<!-- tylko do wydruku -->
+<div id="druk"></div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="krypto.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
